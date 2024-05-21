@@ -1,14 +1,38 @@
 import { useState } from "react";
 import hero from "../assets/hero.jpg";
 import trustPilot from "../assets/TrustPilot.jpg";
+import QueryModal from "./QueryModal";
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isQueryModalOpen, setIsQueryModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    destination: "",
+    interest: "",
+    traveler: "",
+    budget: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsQueryModalOpen(true);
+    setFormData(formData) 
+    //open query modal
+  };
 
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+  const closeQueryModal = () => {
+    setIsQueryModalOpen(false);
+  };
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -30,8 +54,13 @@ const HeroSection = () => {
               Let Our Experts Plan Your Private, Tailor-Made and Secure Tour in
               70+ Inspiring Destinations.
             </p>
-            <div className="hidden md:flex mt-8 space-x-4 justify-center">
-              <select className="p-2 rounded-md bg-white text-black">
+            <div className="hidden lg:flex mt-8 space-x-4 justify-center">
+              <select
+                className="p-2 rounded-md bg-white text-black"
+                name="destination"
+                value={formData.destination}
+                onChange={handleChange}
+              >
                 <option value="" disabled selected>
                   Where do you want to go?
                 </option>
@@ -39,7 +68,12 @@ const HeroSection = () => {
                 <option value="destination2">Destination 2</option>
                 <option value="destination3">Destination 3</option>
               </select>
-              <select className="p-2 rounded-md bg-white text-black">
+              <select
+                className="p-2 rounded-md bg-white text-black"
+                name="interest"
+                value={formData.interest}
+                onChange={handleChange}
+              >
                 <option value="" disabled selected>
                   Your Interests?
                 </option>
@@ -47,17 +81,27 @@ const HeroSection = () => {
                 <option value="interest2">Interest 2</option>
                 <option value="interest3">Interest 3</option>
               </select>
-              <select className="p-2 rounded-md bg-white text-black">
+              <select
+                className="p-2 rounded-md bg-white text-black"
+                name="traveler"
+                value={formData.traveler}
+                onChange={handleChange}
+              >
                 <option value="" disabled selected>
                   No. of travelers
                 </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5+">5+</option>
+                <option value="1">1 travelers</option>
+                <option value="2">2 travelers</option>
+                <option value="3">3 travelers</option>
+                <option value="4">4 travelers</option>
+                <option value="5+">5+ travelers</option>
               </select>
-              <select className="p-2 rounded-md bg-white text-black">
+              <select
+                className="p-2 rounded-md bg-white text-black"
+                name="budget"
+                value={formData.budget}
+                onChange={handleChange}
+              >
                 <option value="" disabled selected>
                   Budget Per Person
                 </option>
@@ -67,13 +111,14 @@ const HeroSection = () => {
                 <option value="budget4">$4000 - $5000</option>
                 <option value="budget5">$5000+</option>
               </select>
-              <button className="bg-orange-500 text-white px-4 py-2 rounded-md">
+              <button className="bg-[#F26A47] text-white px-4 py-2 rounded-md" onClick={handleSubmit}>
                 CREATE MY TRIP NOW
               </button>
+              <QueryModal isOpen={isQueryModalOpen} onClose={closeQueryModal} formData={formData}/>
             </div>
 
             <button
-              className="md:hidden bg-orange-500 text-white px-4 py-2 rounded-md mt-4"
+              className="lg:hidden bg-[#F26A47] text-white px-4 py-2 rounded-md mt-4"
               onClick={openModal}
             >
               CREATE MY TRIP NOW
@@ -114,7 +159,7 @@ const HeroSection = () => {
                   className="w-full p-2 border rounded-md mb-2"
                 />
               </div>
-              <button className="bg-orange-500 text-white px-4 py-2 rounded-md w-full">
+              <button className="bg-[#F26A47] text-white px-4 py-2 rounded-md w-full">
                 GET STARTED
               </button>
             </div>
