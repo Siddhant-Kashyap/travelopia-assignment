@@ -29,11 +29,17 @@ const QueryModal = ({ isOpen, onClose, formData }) => {
     setSpecialRequestText(e.target.value);
   };
   const handleSubmit = async () => {
+    if (!additionalData.fullname || !additionalData.email) {
+        alert("Full name and email are required!");
+        return;
+      }
+    
     try {
         const fullData = { ...formData, ...additionalData };
         const response = await axios.post('https://travelopia-backend-4lw5.onrender.com/api/trips', fullData);
         console.log(response.data); 
         onClose();
+        window.location.href = 'https://travelopia-assignment-nine.vercel.app/';
       } catch (error) {
         console.error('Error:', error); // Log any errors
       }
