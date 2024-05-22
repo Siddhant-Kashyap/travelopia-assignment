@@ -1,8 +1,6 @@
-const SubHeading = () => {
-  return (
-    <>
-      <div className="flex justify-between item-center bg-white m-3">
-       
+const SubHeading = ({ isMenuOpen }) => {
+    return (
+      <div className={`bg-white m-3 ${isMenuOpen ? "block" : "flex justify-between items-center"}`}>
         <div>DESTINATIONS</div>
         <div>TRAVEL THEMES</div>
         <div>TRIP SEARCH</div>
@@ -11,8 +9,8 @@ const SubHeading = () => {
         <div>SUSTAINABLE TRAVEL</div>
         <div>ABOUT US</div>
       </div>
-    </>
-  );
-};
-
-export default SubHeading;
+    );
+  };
+  
+  export default SubHeading;
+  

@@ -24,7 +24,9 @@ const HeroSection = () => {
     e.preventDefault();
     setIsQueryModalOpen(true);
     setFormData(formData) 
+   
     //open query modal
+    console.log(formData)
   };
 
   const openModal = () => {
@@ -127,44 +129,82 @@ const HeroSection = () => {
         </div>
 
         {isModalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">
-                  We need a bit more info to create your itinerary:
-                </h2>
-                <button onClick={closeModal} className="text-gray-500">
-                  &times;
-                </button>
-              </div>
-              <div className="mb-4">
-                <input
-                  type="text"
-                  placeholder="Where do you want to go?"
-                  className="w-full p-2 border rounded-md mb-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Your Interests?"
-                  className="w-full p-2 border rounded-md mb-2"
-                />
-                <input
-                  type="text"
-                  placeholder="No. of travelers"
-                  className="w-full p-2 border rounded-md mb-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Budget Per Person"
-                  className="w-full p-2 border rounded-md mb-2"
-                />
-              </div>
-              <button className="bg-[#F26A47] text-white px-4 py-2 rounded-md w-full">
-                GET STARTED
-              </button>
-            </div>
-          </div>
-        )}
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">
+          We need a bit more info to create your itinerary:
+        </h2>
+        <button onClick={closeModal} className="text-gray-500">
+          &times;
+        </button>
+      </div>
+      <div className="mb-4">
+        <select
+          className="w-full p-2 border rounded-md mb-2 bg-white text-black"
+          name="destination"
+          value={formData.destination}
+          onChange={handleChange}
+        >
+          <option value="" disabled selected>
+            Where do you want to go?
+          </option>
+          <option value="destination1">Destination 1</option>
+          <option value="destination2">Destination 2</option>
+          <option value="destination3">Destination 3</option>
+        </select>
+        <select
+          className="w-full p-2 border rounded-md mb-2 bg-white text-black"
+          name="interest"
+          value={formData.interest}
+          onChange={handleChange}
+        >
+          <option value="" disabled selected>
+            Your Interests?
+          </option>
+          <option value="interest1">Interest 1</option>
+          <option value="interest2">Interest 2</option>
+          <option value="interest3">Interest 3</option>
+        </select>
+        <select
+          className="w-full p-2 border rounded-md mb-2 bg-white text-black"
+          name="traveler"
+          value={formData.traveler}
+          onChange={handleChange}
+        >
+          <option value="" disabled selected>
+            No. of travelers
+          </option>
+          <option value="1">1 traveler</option>
+          <option value="2">2 travelers</option>
+          <option value="3">3 travelers</option>
+          <option value="4">4 travelers</option>
+          <option value="5+">5+ travelers</option>
+        </select>
+        <select
+          className="w-full p-2 border rounded-md mb-2 bg-white text-black"
+          name="budget"
+          value={formData.budget}
+          onChange={handleChange}
+        >
+          <option value="" disabled selected>
+            Budget Per Person
+          </option>
+          <option value="budget1">$1000 - $2000</option>
+          <option value="budget2">$2000 - $3000</option>
+          <option value="budget3">$3000 - $4000</option>
+          <option value="budget4">$4000 - $5000</option>
+          <option value="budget5">$5000+</option>
+        </select>
+      </div>
+      <button className="bg-[#F26A47] text-white px-4 py-2 rounded-md w-full" onClick={handleSubmit}>
+        GET STARTED
+      </button>
+      <QueryModal isOpen={isQueryModalOpen} onClose={closeQueryModal} formData={formData}/>
+    </div>
+  </div>
+)}
+
       </div>
     </>
   );
