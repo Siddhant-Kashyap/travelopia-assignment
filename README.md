@@ -51,4 +51,8 @@ This project is a travel management application built with Vite and React for th
    ```sh
    npm run dev
 
+## Admin Login 
+username - admin
+password - admin
+
 
