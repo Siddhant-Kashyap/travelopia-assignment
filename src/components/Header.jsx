@@ -22,13 +22,15 @@ const Header = () => {
 
         {/* Right Section */}
         <div className="flex items-center space-x-6">
-          <span className="text-black font-roboto hidden md:inline">1 888 263 2574</span>
-          <button className="bg-[#F26A47] text-white px-4 py-2 rounded hidden md:inline">
+          <span className="text-black font-roboto hidden lg:inline">1 888 263 2574</span>
+          <button className="bg-[#F26A47] text-white px-4 py-2 rounded hidden lg:inline">
             Start Planning
           </button>
-          <div className="hidden md:block">Flags drop down</div>
+          <div className="hidden lg:block"><button  onClick={() => window.location.href = 'https://travelopia-admin.vercel.app/'} className="bg-[#201b63] text-white px-4 py-2 rounded hidden lg:inline">
+             Admin Login
+          </button></div>
           <button
-            className="text-black md:hidden"
+            className="text-black lg:hidden"
             onClick={toggleMenu}
           >
             <svg
@@ -50,19 +52,20 @@ const Header = () => {
       </header>
 
       {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-md p-4">
+        <div className="lg:hidden bg-white shadow-md p-4">
           <div className="flex flex-col space-y-4">
           <a href="tel:1-888-263-2574" className="text-black font-roboto">1 888 263 2574</a>
 
             <button className="bg-[#F26A47] text-white px-4 py-2 rounded">
               Start Planning
             </button>
-            <div>Flags drop down</div>
+            
+       
           </div>
         </div>
       )}
 
-      <div className={`md:block ${isMenuOpen ? "block" : "hidden"}`}>
+      <div className={`lg:block ${isMenuOpen ? "block" : "hidden"}`}>
         <SubHeading isMenuOpen ={isMenuOpen} />
       </div>
     </div>
