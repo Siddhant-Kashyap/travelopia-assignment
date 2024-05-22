@@ -96,7 +96,7 @@ const HeroSection = () => {
                 <option value="2">2 travelers</option>
                 <option value="3">3 travelers</option>
                 <option value="4">4 travelers</option>
-                <option value="5+">5+ travelers</option>
+                <option value="5">5+ travelers</option>
               </select>
               <select
                 className="p-2 rounded-md bg-white text-black"
